@@ -32,6 +32,30 @@ const LoginScreen = () => {
     return true;
   };
 
+  const handleGoogleLoginClick = () => {
+    const clientId = "1006583541945-c3pur533l7mt7vofn9f251heapao6qu7.apps.googleusercontent.com";
+    const redirectUri = "http://localhost:8080/api/auth/google/callback";
+
+    const state = "secure_random_state";
+
+    const scopes = [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/calendar",
+    ];
+
+    const authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
+    authUrl.searchParams.append("client_id", clientId);
+    authUrl.searchParams.append("redirect_uri", redirectUri);
+    authUrl.searchParams.append("response_type", "code");
+    authUrl.searchParams.append("scope", scopes.join(" "));
+    authUrl.searchParams.append("access_type", "offline");
+    authUrl.searchParams.append("state", state); // Use the fixed state value
+
+    // Redirect the user to Google's OAuth consent screen
+    window.location.href = authUrl.toString();
+  };
+
   return (
     <section className="card">
       <div className="card__row card__row--right">
@@ -69,6 +93,11 @@ const LoginScreen = () => {
               Login
             </button>
           </form>
+          <div style={{ marginTop: "1rem" }}>
+            <button onClick={handleGoogleLoginClick} className="btn btn-primary">
+              Login with Google
+            </button>
+          </div>
         </div>
       </div>
       <div className="card__row card__row--colored card__row--left">
@@ -85,4 +114,5 @@ const LoginScreen = () => {
     </section>
   );
 };
+
 export default LoginScreen;

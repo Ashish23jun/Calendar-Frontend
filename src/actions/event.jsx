@@ -56,6 +56,7 @@ export const eventStartAddNew = (event) => {
   };
 };
 
+
 export const eventStartUpdate = (event) => {
   return async (dispatch) => {
     fetchWithToken(`events/${event.id}`, event, "PUT")
