@@ -102,6 +102,8 @@ export const startChecking = () => {
   };
 };
 
+
+
 const checkingFinish = () => ({
   type: types.authCheckingFinish,
 });
