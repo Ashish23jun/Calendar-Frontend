@@ -34,7 +34,7 @@ const LoginScreen = () => {
 
   const handleGoogleLoginClick = () => {
     const clientId = "1006583541945-c3pur533l7mt7vofn9f251heapao6qu7.apps.googleusercontent.com";
-    const redirectUri = "https://calendar-backend-wtlz.onrender.com";
+    const redirectUri = "http://localhost:8080/api/auth/google/callback";
 
     const state = "secure_random_state";
 
